@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RequiredArgsConstructor //선언된 모든 final 필드가 포함된 생성자를 생성해줌
 @RestController
-public class PostApiController {
+public class PostsApiController {
 
     private final PostsService postsService;
 
@@ -23,11 +23,33 @@ public class PostApiController {
     }
 
 
-
+    /**
+     * 수정하기
+     * @auther d e v d e u k
+     * @version 1.0
+     * @Date 2020-09-02 오후 11:51
+     * @desc
+     **/
     @PutMapping("/api/v1/posts/{id}")
     public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto){
         return postsService.update(id, requestDto);
     }
+
+
+    /** 삭제하기
+     * @auther d e v d e u k
+     * @version 1.0
+     * @Date 2020-09-03 오후 7:37
+     * @desc
+     **/
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long Delete(@PathVariable Long id){
+        postsService.delete(id);
+        return id;
+    }
+
+
+
 
     @GetMapping("/api/v1/posts/{id}")
     public PostsResponseDto findById(@PathVariable Long id) {
